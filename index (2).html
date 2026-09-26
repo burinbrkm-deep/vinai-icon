@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>VINAI</title>
+
+  <link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/burinbrkm-deep/vinai-icon/main/VINAI_icon_512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/burinbrkm-deep/vinai-icon/main/VINAI_icon_512.png">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="VINAI">
+  <meta name="theme-color" content="#47A8F5">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #f3f7fb;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #f3f7fb;
+    }
+    .fallback {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      background: #f3f7fb;
+      color: #142033;
+    }
+    .fallback a {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: #4d7cff;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    src="https://script.google.com/macros/s/AKfycbyy7t9b5Q_Psqb2LXax5YjHzgo2YR2N1OQjtQmBKHuFrfY_v3u1fBALPU8JHXlhITdJ/exec"
+    allow="camera; microphone; clipboard-read; clipboard-write"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+
+  <div class="fallback" id="fallback">
+    <div>
+      <strong>VINAI</strong><br>
+      หากหน้าแอพไม่โหลด ให้เปิดแอพโดยตรง
+      <br>
+      <a href="https://script.google.com/macros/s/AKfycbyy7t9b5Q_Psqb2LXax5YjHzgo2YR2N1OQjtQmBKHuFrfY_v3u1fBALPU8JHXlhITdJ/exec">เปิด VINAI</a>
+    </div>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      const iframe = document.querySelector('iframe');
+      try {
+        if (!iframe || !iframe.src) document.getElementById('fallback').style.display = 'flex';
+      } catch (e) {
+        document.getElementById('fallback').style.display = 'flex';
+      }
+    }, 5000);
+  </script>
+</body>
+</html>
