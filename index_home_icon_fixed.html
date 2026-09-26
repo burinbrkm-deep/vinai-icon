@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>VINAI</title>
+
+  <!-- ใช้ไฟล์ไอคอนจาก repo เดียวกันโดยตรง -->
+  <link rel="icon" type="image/png" sizes="512x512" href="./VINAI_icon_512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./VINAI_icon_512.png">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="VINAI">
+  <meta name="theme-color" content="#47A8F5">
+
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{
+      background:linear-gradient(180deg,#eaf6ff,#f8fbff);
+      color:#142033;
+    }
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      text-align:center;
+    }
+    .card{
+      width:min(340px,92vw);
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(255,255,255,.95);
+      border-radius:28px;
+      padding:28px 22px;
+      box-shadow:0 18px 48px rgba(42,92,170,.14);
+      backdrop-filter:blur(18px);
+    }
+    .icon{
+      width:120px;
+      height:120px;
+      border-radius:28px;
+      display:block;
+      margin:0 auto 18px;
+      box-shadow:0 14px 34px rgba(38,96,180,.18);
+    }
+    h1{margin:0;font-size:30px}
+    p{margin:10px 0 0;color:#6f7d92;font-size:14px;line-height:1.55}
+    .hint{margin-top:18px;padding:13px;border-radius:14px;background:#eef5ff;font-size:13px;color:#46618f}
+    .open{
+      display:inline-block;
+      margin-top:18px;
+      padding:12px 18px;
+      border-radius:14px;
+      background:#4d7cff;
+      color:white;
+      text-decoration:none;
+      font-weight:800;
+    }
+  </style>
+
+  <script>
+    function isStandalone() {
+      return window.matchMedia('(display-mode: standalone)').matches ||
+             window.navigator.standalone === true;
+    }
+
+    window.addEventListener('load', function() {
+      // ถ้าเปิดจากไอคอนบน Home Screen ให้เข้าแอพจริงทันที
+      if (isStandalone()) {
+        window.location.replace("https://script.google.com/macros/s/AKfycbyy7t9b5Q_Psqb2LXax5YjHzgo2YR2N1OQjtQmBKHuFrfY_v3u1fBALPU8JHXlhITdJ/exec");
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <img class="icon" src="./VINAI_icon_512.png" alt="VINAI">
+      <h1>VINAI</h1>
+      <p>เพิ่มหน้านี้ไปยังหน้าจอโฮมก่อน เพื่อให้ iPhone ใช้ไอคอน VINAI</p>
+      <div class="hint">Safari → แชร์ → เพิ่มไปยังหน้าจอโฮม → ตั้งชื่อ VINAI</div>
+      <a class="open" href="https://script.google.com/macros/s/AKfycbyy7t9b5Q_Psqb2LXax5YjHzgo2YR2N1OQjtQmBKHuFrfY_v3u1fBALPU8JHXlhITdJ/exec">เปิดแอพตอนนี้</a>
+    </div>
+  </div>
+</body>
+</html>
