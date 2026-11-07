@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="th">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -17,19 +17,44 @@ html,body{margin:0;height:100%;background:#05070d;overflow:hidden}
 #inset{position:fixed;top:0;left:0;width:1px;height:env(safe-area-inset-top);pointer-events:none}
 iframe{position:fixed;inset:0;width:100%;height:100%;border:0;display:block}
 #boot{position:fixed;inset:0;display:grid;place-items:center;color:#fff;font:500 15px -apple-system,system-ui,sans-serif;letter-spacing:6px;transition:opacity .4s}
+#ios{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;color:#fff;font:400 16px/1.5 -apple-system,system-ui,sans-serif}
+#ios img{width:96px;height:96px;border-radius:22px}
+#ios a{background:#d4ff3a;color:#05070d;font-weight:600;padding:14px 28px;border-radius:999px;text-decoration:none}
+#ios small{color:#9aa0ab}
 </style>
 </head>
 <body>
 <div id="inset"></div>
 <div id="boot">VINAI</div>
+<div id="ios">
+  <img src="VINAI_icon_512.png" alt="">
+  <div>ติดตั้งแอปบน iPhone:<br>กดปุ่ม <b>Share ⬆️</b> แล้วเลือก <b>Add to Home Screen</b></div>
+  <a id="openBtn" href="#">เปิดแอปในเบราว์เซอร์</a>
+  <small>Safari บล็อกการเปิดแอป Google ซ้อนในหน้าเว็บ จึงเปิดแอปเป็นหน้าเต็มแทน</small>
+</div>
 <script>
 const VINAI_EXEC_URL = 'https://script.google.com/macros/s/AKfycbyy7t9b5Q_Psqb2LXax5YjHzgo2YR2N1OQjtQmBKHuFrfY_v3u1fBALPU8JHXlhITdJ/exec';
 const sat = Math.round(document.getElementById('inset').getBoundingClientRect().height);
-const f = document.createElement('iframe');
-f.src = VINAI_EXEC_URL + '?pwa=1&sat=' + sat;
-f.allow = 'camera; clipboard-write; fullscreen';
-f.onload = () => { const b = document.getElementById('boot'); b.style.opacity = 0; setTimeout(() => b.remove(), 400); };
-document.body.appendChild(f);
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const standalone = window.navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+
+if (isIOS) {
+  // iOS Safari บล็อกคุกกี้ของ Google ใน iframe (เกิด 401) → เปิดแอปเป็นหน้าเต็มแทน
+  const url = VINAI_EXEC_URL + (standalone ? '?pwa=1&sat=' + sat : '');
+  if (standalone) {
+    location.replace(url);                 // เปิดจากไอคอนหน้าโฮม → เข้าแอปทันที
+  } else {
+    document.getElementById('boot').remove();   // เปิดใน Safari → ให้ Add to Home Screen ได้ก่อน (ไอคอนจะถูกต้อง)
+    document.getElementById('ios').style.display = 'flex';
+    document.getElementById('openBtn').href = url;
+  }
+} else {
+  const f = document.createElement('iframe');
+  f.src = VINAI_EXEC_URL + '?pwa=1&sat=' + sat;
+  f.allow = 'camera; clipboard-write; fullscreen';
+  f.onload = () => { const b = document.getElementById('boot'); b.style.opacity = 0; setTimeout(() => b.remove(), 400); };
+  document.body.appendChild(f);
+}
 </script>
 </body>
 </html>
